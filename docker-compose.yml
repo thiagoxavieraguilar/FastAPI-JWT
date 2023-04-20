@@ -9,3 +9,10 @@ services:
       - ./.env
     volumes:
       - /var/cache/postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
+    env_file:
+      - ./.env
