@@ -5,7 +5,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from passlib.context import CryptContext
 from jose import jwt, JWTError
-from decouple import config
 from app.db.models import UserModel
 from app.schemas import User
 from dotenv import load_dotenv
@@ -60,6 +59,25 @@ class UserCase:
         acess_token = jwt.encode(payload,SECRET_KEY,algorithm=ALGORITHM)
         return {
             'acess_token': acess_token,
-            'exp': exp
+            'exp': exp.isoformat()
             }
     
+
+    def verify_toekn(self,acess_token):
+        try:
+            data = jwt.decode(acess_token,SECRET_KEY,algorithms=[ALGORITHM])
+        
+        except JWTError:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail='Invalid acess token'
+            )
+        
+        user_on_db = self.db_session.query(UserModel).filter_by(username=data['sub']).first()
+
+        if user_on_db is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail='Invalid access token'
+            )
+        
