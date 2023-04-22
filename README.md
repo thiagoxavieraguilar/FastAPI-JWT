@@ -1,9 +1,9 @@
 # FastAPI JWT Authentication
  
-###### FastAPI JWT Authentication is a secure and easy-to-use authentication solution for FastAPI web applications. It leverages JSON Web Tokens (JWT) to provide robust ###### and scalable authentication functionality.
+###### FastAPI JWT Authentication is a secure and easy-to-use authentication solution for FastAPI web applications. It leverages JSON Web Tokens (JWT) to provide robust and scalable authentication functionality.
 ###### With FastAPI JWT Authentication, you can easily add user authentication and authorization to your FastAPI application. It supports multiple authentication 
 ###### strategies, including JWT-based authentication, token refreshing, and more.
-###### By using FastAPI JWT Authentication, you can ensure that only authorized users can access your application's resources and data, improving your application's ###### security and reliability.
+###### By using FastAPI JWT Authentication, you can ensure that only authorized users can access your application's resources and data, improving your application's security and reliability.
 
 
 ## Setting up the environment
@@ -39,6 +39,7 @@ docker-compose up -d
 alembic upgrade head
 ```
 
+## Running the project
 7. Finally, start the server using Uvicorn:
 ```
 uvicorn app.main:app --reload
